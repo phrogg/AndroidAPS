@@ -8,7 +8,7 @@ orbs:
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test:  
+  build:  
     # These next lines define the Android machine image executor: https://circleci.com/docs/2.0/executor-types/
     executor:
       name: android/android-machine
@@ -16,11 +16,12 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
+
       # And finally run the release build
       - run:
           name: Assemble release build
           command: |
-            ./gradlew fullRelease
+            ./gradlew assembleRelease    
 
 workflows:
   # Below is the definition of your workflow.
@@ -29,4 +30,4 @@ workflows:
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   sample: 
     jobs:
-      - build-and-test
+      - build
